@@ -1,4 +1,4 @@
-export const company={name:'مرتفعات العارضية',fullName:'مرتفعات العارضية للتجارة والمقاولات',phone:'',email:'',address:'',hours:'',whatsapp:'',instagram:'',linkedin:'',mapUrl:'',locale:'ar',origin:'https://murtafaat-al-ardiya.rahaf-98.chatgpt.site'};
+export const company={name:'مرتفعات العارضية',fullName:'مرتفعات العارضية للتجارة والمقاولات',phone:'',email:'',address:'',hours:'',whatsapp:'',instagram:'',linkedin:'',mapUrl:'',locale:'ar',origin:process.env.NEXT_PUBLIC_SITE_ORIGIN||'https://murtafaat-al-ardiya.rahaf-98.chatgpt.site'};
 export const navigation=[['/','الرئيسية'],['/about','من نحن'],['/services','خدماتنا'],['/projects','المشاريع'],['/blog','المدونة'],['/contact','تواصل معنا']];
 export const services=[
 {id:'development',name:'التطوير العقاري',subtitle:'من الفكرة إلى قيمة مستدامة',text:'نحوّل الرؤية إلى مشروع مدروس، يجمع بين جودة التصميم وحسن اختيار الموقع وكفاءة التنفيذ.',points:['تطوير المشاريع السكنية والتجارية','دراسة الفرص العقارية وجدوى المشروع','التخطيط وإدارة مراحل التطوير','حلول تراعي الجودة والتصميم والموقع والعائد الاستثماري']},

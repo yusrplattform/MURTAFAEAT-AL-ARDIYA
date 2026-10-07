@@ -13,6 +13,7 @@ const { d1, r2 } = hostingConfig;
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 const managedLinux = readExecutionProfile() === "managed-linux";
+const standaloneCloudflare = process.env.SITE_DEPLOY_TARGET === "cloudflare";
 
 const localBindingConfig = {
   main: "./build/sites-worker.ts",
@@ -52,6 +53,11 @@ export default defineConfig(async ({ command }) => {
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
   return {
+    define: {
+      "process.env.NEXT_PUBLIC_SITE_ORIGIN": JSON.stringify(standaloneCloudflare
+        ? "https://murtafaeat-al-ardiya.yusrplattform.workers.dev"
+        : "https://murtafaat-al-ardiya.rahaf-98.chatgpt.site"),
+    },
     server: {
       ...(managedLinux
         ? { host: "0.0.0.0", allowedHosts: ["terminal.local"] }
@@ -62,12 +68,13 @@ export default defineConfig(async ({ command }) => {
     },
     plugins: [
       vinext(),
-      sites({ mockAuth: !managedLinux }),
+      ...(!standaloneCloudflare ? [sites({ mockAuth: !managedLinux })] : []),
       connectorPreview(),
       cloudflare({
+        ...(standaloneCloudflare ? { configPath: "./wrangler.cloudflare.json" } : {}),
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
         inspectorPort: false,
-        config: {
+        ...(!standaloneCloudflare ? { config: {
           ...localBindingConfig,
           ...(command === "serve"
             ? {
@@ -80,7 +87,7 @@ export default defineConfig(async ({ command }) => {
                 ],
               }
             : {}),
-        },
+        } } : {}),
         ...(command === "serve"
           ? {
               auxiliaryWorkers: [

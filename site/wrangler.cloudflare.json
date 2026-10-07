@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "murtafaeat-al-ardiya",
+  "main": "./build/sites-worker.ts",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "murtafaeat-al-ardiya-requests",
+      "database_id": "f9c0d071-d1c3-4290-9fb9-5064baf539b0",
+      "migrations_dir": "./drizzle"
+    }
+  ],
+  "observability": { "enabled": true }
+}
