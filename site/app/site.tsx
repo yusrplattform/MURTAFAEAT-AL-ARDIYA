@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+function Link({children,...props}:React.ComponentProps<'a'>){return <a {...props}>{children}</a>}
 import {useState} from 'react';
 import {Building2,Landmark,ChartNoAxesCombined,Menu,X,Phone,Mail,MapPin,Clock,ShieldCheck,ScanLine,Handshake,Check,Layers,MessageCircle} from 'lucide-react';
 import {company,services,navigation,faqs,pages} from '../lib/content';
