@@ -1,0 +1,10 @@
+node_modules/
+.env*
+!.env.example
+.wrangler/
+.sites-runtime/
+*.tsbuildinfo
+site-deploy.tar.gz
+dist/
+.next/
+.vinext/
